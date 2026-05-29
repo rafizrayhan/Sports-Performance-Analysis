@@ -1,0 +1,43 @@
+# summarizing a single variable
+
+NBA_Games['PTS'].describe()
+
+# calculating mean
+
+NBA_Games['FGM'].mean()
+
+# calculating median 
+
+NBA_Games['FGM'].median()
+
+# calculating standard deviation
+
+NBA_Games['FGM'].std()
+
+# calculating summary statistics of a variable based on another variable, usually based on a different categorical variable
+
+NBA_Games.groupby(['WL']).mean()
+
+# calculating the mean of a single variable by group
+
+NBA_Games.groupby(['WL'])['PTS'].mean()
+
+# summarize date variable
+
+NBA_Games['GAME_DATE'].describe()
+
+# histogram
+
+NBA_Games.hist(column='PTS')
+
+# specifying no of bins
+
+NBA_Games.hist(column='PTS',bins=20)
+
+# adding space between bins
+
+NBA_Games.hist(column='PTS',bins=20,rwidth=0.9)
+
+# saving dataset
+
+NBA_Games.to_csv(" ",index=FALSE)
