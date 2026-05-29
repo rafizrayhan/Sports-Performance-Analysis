@@ -1,0 +1,35 @@
+import pandas as pd
+
+# top 5 rows
+
+NBA_Games = pd.read_csv("")
+NBA_Games.head()
+
+# types of variables
+
+NBA_Games.dtypes
+
+# converting categorical variable into dummy variable
+
+dummy=pd.get_dummies(NBA_Games, column=['WL'])
+dummy.columns
+
+# attaching the dummy variable back to the dataset
+
+NBA_Games = pd.concat([NBA_Games,dummy['WL_W']],axis=1)
+NBA_Games.head()
+
+# renaming dummy variable
+
+NBA_Games.rename(columns={'WL_W':'WIN'},inplace=True)
+NBA_Games.head()
+
+# date variable
+
+NBA_Games['GAME_DATE'].dtype
+
+# converting object variable to date variable
+
+import datetime
+NBA_Games['GAME_DATE']=pd.to_datetime(NBA_Games['GAME_DATE'])
+NBA_Games['DATE_TIME'].head()
