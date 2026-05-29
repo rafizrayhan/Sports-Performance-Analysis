@@ -1,0 +1,108 @@
+import pandas as pd
+import numpy as np
+
+NBA_Teams = pd.read_csv()
+print(NBA_Teams)
+display(NBA_Teams)
+
+# how many variables or observation
+
+NBA_Teams.shape()
+
+# rename column
+
+NBA_Teams = NBA_Teams.rename(columns={'Unnamed: 0':'TEAM_NUMBER'}, inplace=TRUE)
+NBA_Teams = NBA_Teams.rename(columns={'ID':'TEAM_ID'}, inplace=TRUE)
+NBA_Teams = NBA_Tema.rename(colums={'FULL_NAME':'TEAM_NAME'}, inplace=TRUE)
+
+# delete a column
+
+NBA_Teams.drop(['TEAM_NUMBER'], axis=1, inplace=TRUE)
+print(NBA_Teams)
+
+# first 5 rows
+
+Games = pd.read_csv()
+Games.head()
+
+# deleting a row
+
+Games.drop([0], axis=0, inplace=TRUE)
+Games.head()
+
+# deleting observations based on conditions
+
+Games = Games[Games.TEAM_NAME!="Las Vegas Aces"]
+Games.head()
+
+# merging two datasets
+
+NBA_Games = pd.merge(NBA_Games, Games, on=['TEAM_ID','TEAM_NAME'])
+
+# list of variables
+
+NBA_Games.columns()
+
+#deleting a variable
+
+NBA_Games.drop(['ABBREVIATION'], axis=1, inplace=TRUE)
+
+# sorting data
+
+NBA_Games.sort_values(by=['GAME_ID'],ascending=[False].head(20)
+
+ # observations that have real values
+
+NBA_Games.info()
+
+# detecting missing values
+
+NBA_Games.notnull()
+
+# dropping observations with missing values
+
+NBA_Games = NBA_Games[pd.notnull(NBA_Games["FG_PCT"])]
+NBA_Games.shape()
+
+# replacing missing values
+
+NBA_Games = NBA_Games.fillna(NBA_Games.mean())
+NBA_Games.info()
+
+# creating a variable
+
+NBA_Games['GM'] = NBA_Games['FGM'] + NBA_Games['FG3M'] + NBA_Games['FTM']
+
+# creating a variable based on condition
+
+NBA_Games['RESULT'] = np.where(NBA_Games['PLUS_MINUS']>0,'W','L')
+
+# dropping the new variable
+
+NBA_Games.drop(['RESUlT'],axis=1,inplace=TRUE)
+
+# creating a variable within group
+
+NBA_Games.sort_values(['GAME_ID','WL'],inplace=TRUE)
+NBA_Games['POINT_DIFF'] = NBA_Games.groupby(['GAME_ID'])['PTS'].diff()
+
+# impute point difference for losing team as well
+
+NBA_Games['POINT_DIFF'] = NBA_Games['POINT_DIFF'].fillna(NBA_Games.groupby('GAME_ID')['POINT_DIFF'].transform('mean'))
+
+# dropping all observations with missing value in at least one variable
+
+NBA_Games = NBA_Games.dropna()
+
+# creating new dataframe
+
+NBA_Teams_Stats = NBA_Games.groupby(['TEAM_ID','SEASON_ID'])['PTS','FGM','FGA','FG_PCT','FG3M','FG3A','FG3_PCT'].sum().reset_index()
+display(NBA_Teams_Stats)
+
+# variable equalling the total number of observation within a specified group
+
+NBA_Game_Count = NBA_Games.groupby(['TEAM_ID','SEASON_ID']).size().reset_index(name='GAME_COUNT')
+
+# saving data
+
+NBA_Games.to_csv(  ,index=Fales)
