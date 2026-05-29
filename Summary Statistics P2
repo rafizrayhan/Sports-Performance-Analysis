@@ -1,0 +1,44 @@
+import pandas as pd
+
+# importing data
+
+NBA_Games=pd.read_csv(" ")
+NBA_Games.head()
+
+# comparing success rate of two point and three point field goals
+
+NBA_Games['FG_PCT'].describe()
+NBA_Games['FG3_PCT'].describe()
+
+# plotting two histograms side by side
+
+NBA_Games.hist(column=['FG_PCT','FG3_PCT'],bins=20,sharex=True,sharey=True)
+
+# plotting two histograms in same graph in different color
+
+import matplotlib.pyplot as plt
+
+NBA_Games[['FG_PCT','FG3_PCT']].plot.hist(alpha=0.3,bins=20)
+plt.xlabel('Field Goal Percentage')
+plt.ylabel('Frequency')
+plt.title("Distribution of Field Goal Percentage",fontsize=15)
+plt.savefig('FG_PCT_Distribution.png')
+
+# histogram by the result of the game using the "by" option
+
+NBA_Games.hist(by='WL',column='FG_PCT',color=red,bins=15,sharex=True,sharey=True)
+
+# time series graph
+
+import datetime
+NBA_Games['GAME_DATE']=pd.to_datetime(NBA_Games['DATE_TIME'])
+
+# subsetting a database
+
+Pistons_Games=NBA_Games[(NBA_Games.NICKNAME=='Pistons')&(NBA_Games.SEASON_ID==22017)&(NBA_Games.GAME_DATE>='2017-10-17')]
+display(Pistons_Games)
+
+# plotting the points earned by Pistons by time
+
+Pistons_Games.plot(x='GAME_DATE',y='PTS')
+plt.savefig(' .png')
