@@ -1,0 +1,26 @@
+# scatter plot
+
+NBA_Games.plot.scatter(x='AST,y='FGM)
+
+# using 'seaborn' library
+
+import seaborn as sns
+sns.regplot(x='AST',y='FGM',data=NBA_Games,marker='.')
+plt.xlabel('Assists')
+plt.ylabel('Field Goals Made')
+plt.title("Relationship between the Numbers of Assists and Field Goals Made",fontsize=15)
+
+# correlation coefficient
+
+NBA_Games['AST'].corr(NBA_Games['FGM'])
+
+# scatter plots by group
+
+sns.lmplot(x='AST',y='FGM',hue='WL',data=NBA_Games)
+plt.xlabel('Assists')
+plt.ylabel('Field Goals Made')
+plt.title("Relationship between the Numbers of Assists and Field Goals Made",fontsize=15)
+
+# pearson's coefficient for all the numerical variables
+
+NBA_Games.corr(method='pearson')
