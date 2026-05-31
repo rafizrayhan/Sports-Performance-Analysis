@@ -49,7 +49,7 @@ NBA_Games.drop(['ABBREVIATION'], axis=1, inplace=TRUE)
 
 # sorting data
 
-NBA_Games.sort_values(by=['GAME_ID'],ascending=[False].head(20)
+NBA_Games.sort_values(by=['GAME_ID'],ascending=[False].head(20))
 
  # observations that have real values
 
