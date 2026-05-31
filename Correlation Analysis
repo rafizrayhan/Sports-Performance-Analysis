@@ -5,6 +5,7 @@ NBA_Games.plot.scatter(x='AST,y='FGM)
 # using 'seaborn' library
 
 import seaborn as sns
+import matplotlib.pyplot as plt
 sns.regplot(x='AST',y='FGM',data=NBA_Games,marker='.')
 plt.xlabel('Assists')
 plt.ylabel('Field Goals Made')
