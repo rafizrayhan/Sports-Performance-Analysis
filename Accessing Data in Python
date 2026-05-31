@@ -105,4 +105,4 @@ NBA_Game_Count = NBA_Games.groupby(['TEAM_ID','SEASON_ID']).size().reset_index(n
 
 # saving data
 
-NBA_Games.to_csv(  ,index=Fales)
+NBA_Games.to_csv(  ,index=False)
