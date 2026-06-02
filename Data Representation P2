@@ -1,0 +1,26 @@
+# importing one match data
+
+MI_CSK=pd.read_excel(" ")
+print(MI_CSK.columns.tolist())
+
+# runs v balls plot
+
+plt.plot(MI_CSK['MI_delivery_no'],MI_CSK['MI_runs_total_end'])
+
+# fall of wickets
+
+MIwicket=MI_CSK[MI_CSK['MI_wicket']>0]
+CSKwicket=MI_CSK[MI_CSK['CSK_wicket']>0]
+
+# plotting the fall of wickets
+
+plt.plot(MI_CSK['MI_delivery_no'],MI_CSK['MI_runs_total_end'],MIwicket['MI_runs_total_end'], 'ro')
+
+# plotting both teams' runs v balls
+
+plt.plot(MI_CSK['CSK_delivery_no'],MI_CSK['MI_runs_total_end'],MI_CSK['CSK_runs_total_end'])
+
+# plotting the fall of wickets
+
+plt.plot(MI_CSK['CSK_delivery_no'],MI_CSK['MI_runs_total_end'],MIwicket['MI_runs_total_end'],'bo') 
+plt.plot(MI_CSK['CSK_delivery_no'],MI_CSK['CSK_runs_total_end'],CSKwicket['CSK_runs_total_end'],'ro')
