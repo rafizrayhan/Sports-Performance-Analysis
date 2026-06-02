@@ -1,0 +1,50 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# importing the data
+
+IPL_2018=pd.read_excel(" ")
+display(IPL_2018)
+
+# no of columns
+
+print(IPL_2018.columns.tolist())
+
+# histogram of runs scored in both innings
+
+IPL_2018.hist(column='innings1',bins=10)
+IPL_2018.hist(column='innings2',bins=10)
+
+# correcting the range of x-axis for both data sets
+
+IPL_2018.hist(column='innings1',bins=10)
+plt.xlim((60,250))
+plt.ylim((0,20))
+IPL_2018.hist(column='innings2',bins=10)
+plt.xlim((60,250))
+plt.ylim((0,20))
+plt.plot
+
+# superimpose
+
+IPL_2018[['innings1','innings2']].plot.hist(alpha=0.5,bins=10)
+plt.xlabel('Runs')
+plt.ylabel('Frequency')
+plt.title("Runs distribution by innings",fontsize=15)
+plt.xlim((60,250))
+plt.ylim((0,20))
+
+# defining winning and losing teams
+
+IPL_2018['winscore']=np.where(IPL_2018['innings1']>IPL_2018['innings2'],IPL_2018['innings1'],IPL_2018['innings2'])
+IPL_2018['losescore']=np.where(IPL_2018['innings1']>IPL_2018['innings2'],IPL_2018['innings2'],IPL_2018['innings1'])
+
+# distribution of runs by winning and losing team
+
+IPL_2018[['winscore','losescore']].plot.hist(alpha=0.5,bins=10)
+plt.xlabel('Runs')
+plt.ylabel('Frequency')
+plt.title("Runs distribution by innings",fontsize=15)
+plt.xlim((60,250))
+plt.ylim((0,20))
