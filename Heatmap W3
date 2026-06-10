@@ -1,0 +1,99 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# importing the data
+MLBAM18=pd.read_csv("")
+print(MLBAM18.columns.tolist())
+
+# limiting the set of variables
+MLBmap=MLBAM18[['']]
+MLBmap['event'].unique()
+
+# plotting the coordinates
+plt.scatter(MLBmap['our.x'],MLBmap['our.y'],s=.001,c='r',marker='.')
+
+# plotting subset (hit)
+Single=MLBmap[MLBmap.event=='Single']
+plt.scatter(Single['our.x'],Single['our.y'],s=.02,c='darkorange',marker='.')
+
+# plotting subset (double)
+Double=MLBmap[MLBmap.event=='Double']
+plt.scatter(Double['our.x'],Double['our.y'],s=.02,c='dodgerblue',marker='.')
+
+# plotting subset (triple)
+Triple=MLBmap[MLBmap.event=='Triple']
+plt.scatter(Triple['our.x'],Triple['our.y'],s=.02,c='',marker='.')
+
+# plotting home runs
+Homer=MLBmap[MLBmap.event=='Home Run']
+plt.scatter(Homer['our.x'],Homer['our.y'],s=.20,c='m',marker='.')
+
+# four plots
+fig.axes=plt.subplots(1,4,figsize=(15,3))
+axes[0].scatter(Single['our.x'],Single['our.y'],s=.01,c='darkorange',marker='.')
+axes[0].set_ylim((0,500))
+axes[0].set_title('Singles')
+
+axes[1].scatter(Double['our.x'],Double['our.y'],s=.01,c='dodgerblue',marker='.')
+axes[1].set_ylim((0,500))
+axes[1].set_title('Doubles')
+
+axes[2].scatter(Triple['our.x'],Triple['our.y'],s=1,c='g',marker='.')
+axes[2].set_ylim((0,500))
+axes[2].set_title('Triples')
+
+axes[3].scatter(Homer['our.x'],Homer['our.y'],s=.5,c='m',marker='.')
+axes[3].set_ylim((0,500))
+axes[3].set_title('Home Runs')
+
+plt.tight_layout()
+plt.show()
+
+#on the same chart
+ax=plt.scatter(Single['our.x'],Single['our.y'],s=.01,c='darkorange',marker='.')
+ax=plt.scatter(Double['our.x'],Double['our.y'],s=.1,c='dodgerblue',marker='.')
+ax=plt.scatter(Triple['our.x'],Triple['our.y'],s=1,c='g',marker='.')
+ax=plt.scatter(Homer['our.x'],Homer['our.y'],s=.5,c='m',marker='.')
+
+# outs
+out_types=['Groundout','Flyout','Pop Out','Forceout','Lineout','Grounded Into DP']
+Outs=MLBmap[MLBmap['event'].isin(out_types)]
+plt.scatter(Outs['our.x'],Outs['our.y'],s=.01,c='r',marker='.')
+
+# hits
+hit_types=['Single','Double','Triple','Home Run']
+Hits=MLBmap[MLBmap['event'].isin(hit_types)]
+plt.scatter(Hits['our.x'],Hits['our.y'],s=.01,c='b',marker='.')
+
+# comparing stadiums
+stadiums=MLBmap.groupby('stadium')['gameid'].count().reset_index(drop=True)
+stadiums
+
+#Tropicana field
+Trop=MLBmap[MLBmap.stadium=='Tropicana Field']
+plt.scatter(Trop['our.x'],Trop['our.y'],s=1,c='r',marker='.')
+
+#Dodger field
+Dodge=MLBmap[MLBmap.stadium=='Dodger Stadium']
+plt.scatter(Dodge['our.x'],Dodge['our.y'],s=1,c='dodgerblue',marker='.')
+
+# plotting them side by side
+fig.axes=plt.subplots(1,2,figsize=(15,3))
+axes[0].scatter(Trop['our.x'],Trop['our.y'],s=1,c='r',marker='.')
+axes[0].set_ylim((0,500))
+
+axes[1].scatter(Dodge['our.x'],Dodge['our.y'],s=1,c='dodgerblue',marker='.')
+axes[1].set_ylim((0,500))
+
+# comparing player
+playersn=MLBmap.groupby('batterId')['batterName'].describe().reset_index(drop=True)
+playersn.sort_values(by='count',ascending=False)
+
+# comparing righty v lefty
+righty=MLBmap[MLBmap.batterID==607208]
+plt.scatter(righty['our.x'],righty['our.y'],s=10,c='b',marker='.')
+
+lefty=MLBmap[MLBmap.batterID==455976]
+plt.scatter(lefty['our.x'],lefty['our.y'],s=10,c='r',marker='.')
+
